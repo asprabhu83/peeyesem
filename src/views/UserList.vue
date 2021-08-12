@@ -11,7 +11,7 @@
      <button @click="addUserDialog = true" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 ml-5 px-4 rounded focus:outline-none focus:shadow-outline">Add User <font-awesome-icon icon="user-plus"  size="1x" class="text-white ml-2 cursor-pointer"  /></button>
    </div>
    <div class="w-10/12 mx-auto mt-10">
-     <input class="shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" v-model="searchQuery" placeholder="Search" />
+     <input class="shadow appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" v-model="searchQuery" placeholder="Search by name" />
    </div>
   <div class="w-10/12 mx-auto mt-5">
     <div class="flex flex-col">

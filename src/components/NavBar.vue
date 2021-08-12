@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-wrap">
     <div class="w-full">
-      <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-dark-100">
+      <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 header_nav">
         <div class="container flex flex-wrap items-center justify-between">
           <div class="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
               <a
         href="/"
         class="p-3 h-full flex items-center group border-r border-gray-600"
       >
-        <img src="https://drill-d.co.il/wp-content/uploads/2020/06/Big-Logo.d110a0.webp" class="h-10"/>
+        <img src="../assets/it_logo.png" class="h-10"/>
       </a>
             <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" v-on:click="toggleNavbar()">
               <i class="fas fa-bars"></i>
@@ -17,7 +17,7 @@
           <div class="lg:flex lg:flex-grow items-center">
             <ul class="flex flex-col lg:flex-row list-none">
               <li class="nav-item">
-                <router-link  class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"  to="/" >Profile</router-link>
+                <router-link  class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"  to="/" >Profile</router-link>
               </li>
               <li class="nav-item" v-if="permission === 'manage users' || type === 'super_admin'">
                 <div class="relative inline-block text-left">
@@ -30,7 +30,7 @@
                       </svg>
                     </button>
                   </div>
-                  <div v-if="drpdwn === true" @mouseleave="drpdwn = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                  <div v-if="drpdwn === true" @mouseleave="drpdwn = false" class="origin-top-right absolute -right-26 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                     <div class="" role="none">
                       <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                       <router-link to="/user-list" class="text-gray-700 block px-4 py-3 text-sm hover:bg-dark-200 hover:text-white dropdown_menu_item" role="menuitem" tabindex="-1" id="menu-item-1">Manage Users</router-link>
@@ -42,7 +42,7 @@
             </ul>
           </div>
         </div>
-        <button class="bg-transparent px-6 text-white font-bold cursor-pointer" @click="Logout">Logout<font-awesome-icon icon="sign-out-alt"  size="1x" class="text-white ml-2 cursor-pointer" @click="addUserDialog = false" /></button>
+        <button class="bg-transparent px-6 text-black font-bold cursor-pointer" @click="Logout">Logout<font-awesome-icon icon="sign-out-alt"  size="1x" class="text-black ml-2 cursor-pointer" @click="addUserDialog = false" /></button>
       </nav>
     </div>
   </div>
@@ -84,10 +84,12 @@ export default {
 </script>
 <style scoped>
 .drpdwn{
-  color: white;
+  color: black;
   padding-top: 6px;
   font-size:13px;
   text-transform: uppercase;
 }
-
+.header_nav{
+  box-shadow: 0 2px 10px 4px rgb(0 0 0/15%);
+}
 </style>
