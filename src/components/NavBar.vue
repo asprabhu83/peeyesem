@@ -35,6 +35,7 @@
                       <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                       <router-link to="/user-list" class="text-gray-700 block px-4 py-3 text-sm hover:bg-dark-200 hover:text-white dropdown_menu_item" role="menuitem" tabindex="-1" id="menu-item-1">Manage Users</router-link>
                       <router-link to="/user-role-list" class="text-gray-700 block px-4 py-3 text-sm hover:bg-dark-200 hover:text-white dropdown_menu_item" role="menuitem" tabindex="-1" id="menu-item-2">Manage UserRole</router-link>
+                      <router-link to="/add-cars" class="text-gray-700 block px-4 py-3 text-sm hover:bg-dark-200 hover:text-white dropdown_menu_item" role="menuitem" tabindex="-1" id="menu-item-2">Add Cars</router-link>
                     </div>
                   </div>
                 </div>

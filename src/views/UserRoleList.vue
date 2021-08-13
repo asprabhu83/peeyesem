@@ -7,10 +7,10 @@
          <AddUserRole @created="GetUserRoles" @childDialog="childDialog"/>
       </div>
    </div>
-   <div class="w-10/12 mx-auto text-right mt-10">
+   <div class="w-8/12 mx-auto text-right mt-10">
      <button @click="addUserDialog = true" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 ml-5 px-4 rounded focus:outline-none focus:shadow-outline">Add User Role<font-awesome-icon icon="user-plus"  size="1x" class="text-white ml-2 cursor-pointer"  /></button>
    </div>
-  <div class="w-10/12 mx-auto mt-10">
+  <div class="w-8/12 mx-auto mt-10">
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
