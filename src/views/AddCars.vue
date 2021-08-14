@@ -178,7 +178,7 @@
                     />
                 </div>
                 <div class="mt-12">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Car</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full py-2 px-4 rounded focus:outline-none focus:shadow-outline" @click="AddCars">Add Car</button>
                 </div>
             </form>
         </div>
@@ -191,7 +191,7 @@ export default {
   data () {
     return {
       modelName: '',
-      files: [],
+      files: '',
       description: '',
       power: '',
       transmission: '',
@@ -208,7 +208,30 @@ export default {
         var fileName = event.target.files[0].name
         label.innerHTML = fileName
       }
-      this.files = event.target.files[0]
+      var files = event.target.files || event.dataTransfer.files
+      this.createImage(files[0])
+    },
+    createImage (file) {
+      var reader = new FileReader()
+      var vm = this
+      reader.onload = (e) => {
+        vm.files = e.target.result
+        console.log(vm.files)
+      }
+      reader.readAsDataURL(file)
+    },
+    AddCars () {
+      this.axios
+        .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/store', {
+          car_image: this.files,
+          car_title: 'hyundai'
+        })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
