@@ -1,8 +1,11 @@
 <template>
   <section>
-      <div class="w-8/12 mx-auto mt-24">
-        <div class="form_box w-1/2 px-16 py-16 mx-auto ">
+      <div class=" ">
+        <div class="px-8 pb-10">
             <form  action="">
+                 <div class="msg_box">
+                   <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                 </div>
                  <div class="mb-4">
                     <label
                     class="block text-gray-700 text-sm font-bold mb-2"
@@ -195,7 +198,8 @@ export default {
       description: '',
       power: '',
       transmission: '',
-      mileage: ''
+      mileage: '',
+      success: false
     }
   },
   methods: {
@@ -226,10 +230,15 @@ export default {
           car_title: this.modelName,
           car_image: this.files,
           car_description: this.description,
-          overview_image: 'hello.png'
+          overview_image: 'hello.png',
+          car_power: this.power,
+          car_transmission: this.transmission
         })
         .then((response) => {
           console.log(response)
+          this.success = true
+          this.$emit('created')
+          this.$emit('childDialog')
         })
         .catch((error) => {
           console.log(error)
