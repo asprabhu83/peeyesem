@@ -223,8 +223,10 @@ export default {
     AddCars () {
       this.axios
         .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/store', {
+          car_title: this.modelName,
           car_image: this.files,
-          car_title: 'hyundai'
+          car_description: this.description,
+          overview_image: 'hello.png'
         })
         .then((response) => {
           console.log(response)

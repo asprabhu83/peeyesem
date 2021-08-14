@@ -7,7 +7,7 @@
          <AddUser @created="GetUser" @childDialog="childDialog"/>
       </div>
    </div>
-   <div class="w-10/12 mx-auto text-right mt-10">
+   <div class="w-8/12 mx-auto text-right mt-10">
      <button @click="addUserDialog = true" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 ml-5 px-4 rounded focus:outline-none focus:shadow-outline">Add User <font-awesome-icon icon="user-plus"  size="1x" class="text-white ml-2 cursor-pointer"  /></button>
    </div>
    <div class="w-8/12 mx-auto mt-10">
