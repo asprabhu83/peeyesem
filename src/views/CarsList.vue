@@ -65,7 +65,7 @@
                       tracking-wider
                     "
                   >
-                    Image Path
+                    Description
                   </th>
                   <th
                     scope="col"
@@ -122,7 +122,7 @@
                         text-green-800
                       "
                     >
-                      {{car.car_image}}
+                      {{car.car_description}}
                     </span>
                   </td>
                   <td
@@ -199,8 +199,7 @@ export default {
       this.axios
         .get(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/index')
         .then((response) => {
-          this.cars = response.data.cars
-          console.log(response.data.cars[0].id)
+          this.cars = response.data.car_table
         })
         .catch((error) => {
           console.log(error)
