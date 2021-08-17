@@ -987,33 +987,62 @@ export default {
         label.innerHTML = fileName
       }
       var files = event.target.files || event.dataTransfer.files
-      this.createImage(files[0], event.target.getAttribute('data-file-target'))
+      this.createImage(files[0], event.target.getAttribute('data-file-target'), fileLength)
     },
-    createImage (file, path) {
+    createImage (file, path, flen) {
       var reader = new FileReader()
       var vm = this
-      reader.onload = (e) => {
-        vm.files = e.target.result
+      if (path === 'modelImage') {
+        reader.onload = (e) => {
+          vm.modelImage = e.target.result
+          console.log(this.modelImage)
+        }
       }
-      reader.readAsDataURL(file)
+      if (path === 'overviewImage') {
+        reader.onload = (e) => {
+          vm.overviewImage = e.target.result
+          console.log(this.overviewImage)
+        }
+      }
+      if (path === 'postImage') {
+        reader.onload = (e) => {
+          vm.postImage = e.target.result
+          console.log(this.postImage)
+        }
+      }
+      if (path === 'galleryImage') {
+        reader.onload = (e) => {
+          vm.galleryImage = e.target.result
+          console.log(this.galleryImage)
+        }
+      }
+      if (path === 'colorImage') {
+        reader.onload = (e) => {
+          vm.colorImage = e.target.result
+          console.log(this.colorImage)
+        }
+      }
+      if (flen !== 0) {
+        reader.readAsDataURL(file)
+      }
     },
-    // tabFunc (e) {
-    //   var alltabs = document.querySelectorAll('.tab_item')
-    //   alltabs.forEach(tab => {
-    //     if (tab.classList.contains('active')) {
-    //       tab.classList.remove('active')
-    //     }
-    //   })
-    //   var alltabItems = document.querySelectorAll('.step')
-    //   alltabItems.forEach(item => {
-    //     if (item.classList.contains('active')) {
-    //       item.classList.remove('active')
-    //     }
-    //   })
-    //   var target = e.target.getAttribute('data-target')
-    //   document.querySelector('.step' + target).classList.add('active')
-    //   e.target.classList.add('active')
-    // },
+    tabFunc (e) {
+      var alltabs = document.querySelectorAll('.tab_item')
+      alltabs.forEach(tab => {
+        if (tab.classList.contains('active')) {
+          tab.classList.remove('active')
+        }
+      })
+      var alltabItems = document.querySelectorAll('.step')
+      alltabItems.forEach(item => {
+        if (item.classList.contains('active')) {
+          item.classList.remove('active')
+        }
+      })
+      var target = e.target.getAttribute('data-target')
+      document.querySelector('.step' + target).classList.add('active')
+      e.target.classList.add('active')
+    },
     NextTab (e) {
       var current = e.target.getAttribute('data-current')
       var next = e.target.getAttribute('data-next')
@@ -1030,7 +1059,7 @@ export default {
         this.axios
           .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/car', {
             car_title: this.modelName,
-            car_image: 'hello'
+            car_image: this.modelImage
           })
           .then((response) => {
             this.carId = response.data.id
@@ -1049,7 +1078,7 @@ export default {
           .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/car_overview', {
             car_id: this.carId,
             car_description: this.description,
-            overview_image: 'hello'
+            overview_image: this.overviewImage
           })
           .then((response) => {
             this.overviewId = response.data.id
@@ -1109,7 +1138,7 @@ export default {
             highlight_id: this.highlightId,
             post_title: this.postTitle,
             post_description: this.postDescription,
-            post_image: 'hello'
+            post_image: this.postImage
           })
           .then((response) => {
             this.postsuccess = true
@@ -1168,7 +1197,7 @@ export default {
             car_id: this.carId,
             color_code: this.colorCode,
             color_title: this.colorTitle,
-            color_image: 'hello'
+            color_image: this.colorImage
           })
           .then((response) => {
             this.colorsuccess = true
