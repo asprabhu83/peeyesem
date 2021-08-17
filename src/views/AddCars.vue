@@ -44,7 +44,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Model Name"
                     v-model="modelName"
@@ -61,7 +60,7 @@
                     class="shadow
                         block
                         mt-2
-                        file_label
+                        modelImage
                         cursor-pointer
                         appearance-none
                         border
@@ -73,7 +72,7 @@
                         leading-tight
                         focus:outline-none
                         focus:shadow-outline"
-                    for="model_image"
+                    for="modelImage"
                     >
                     Select image
                     </label>
@@ -82,9 +81,10 @@
                         hidden
                     "
                     accept="image/*"
-                    id="model_image"
+                    id="modelImage"
                     ref="myFiles"
                     type="file"
+                    data-file-target="modelImage"
                     placeholder="Model Image"
                     @change="previewFiles"
                     />
@@ -96,35 +96,6 @@
            <div class="step step2">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
-              </div>
-              <div class="mb-4">
-                <label
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  for="userrole"
-                >
-                  Model
-                </label>
-                <select
-                  class="
-                    shadow
-                    appearance-none
-                    border
-                    rounded
-                    w-full
-                    py-2
-                    px-3
-                    text-gray-700
-                    leading-tight
-                    focus:outline-none
-                    focus:shadow-outline
-                  "
-                  id="userrole"
-                  v-model="userRole"
-                >
-                <option class="text-xl " value="">Choose Model</option>
-                <option class="text-xl" :value="car.id" v-for="car in cars"
-                  :key="car.id" >{{car.car_title}}</option>
-                </select>
               </div>
             <div class="mb-4">
                     <label
@@ -147,7 +118,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Overview Description"
                     v-model="description"
@@ -164,7 +134,7 @@
                     class="shadow
                         block
                         mt-2
-                        file_label
+                        overviewImage
                         cursor-pointer
                         appearance-none
                         border
@@ -176,7 +146,7 @@
                         leading-tight
                         focus:outline-none
                         focus:shadow-outline"
-                    for="model_image"
+                    for="overviewImage"
                     >
                     Select image
                     </label>
@@ -185,16 +155,17 @@
                         hidden
                     "
                     accept="image/*"
-                    id="model_image"
+                    id="overviewImage"
                     ref="myFiles"
                     type="file"
+                    data-file-target="overviewImage"
                     placeholder="Overview Image"
                     @change="previewFiles"
                     />
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="2" data-prev="1" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="2" data-next="3" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="2" data-next="3" @click="AddCars">submit</button>
                 </div>
            </div>
             <div class="step step3">
@@ -222,7 +193,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Power"
                     v-model="power"
@@ -249,7 +219,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Transmission"
                     v-model="transmission"
@@ -276,7 +245,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Mileage"
                     v-model="mileage"
@@ -284,7 +252,7 @@
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="3" data-prev="2" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="3" data-next="4" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="3" data-next="4" @click="AddCars">submit</button>
                 </div>
            </div>
            <div class="step step4">
@@ -312,7 +280,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Highlight Title"
                     v-model="highlight"
@@ -320,12 +287,12 @@
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="4" data-prev="3" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="4" data-next="5" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="4" data-next="5" @click="AddCars">submit</button>
                 </div>
            </div>
            <div class="step step5">
              <div class="msg_box h-12">
-                   <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-green-500" v-if="postsuccess == true">Added Successfully</div>
               </div>
              <div class="mb-4">
                     <label
@@ -348,7 +315,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Post Title"
                     v-model="postTitle"
@@ -375,7 +341,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Post Description"
                     v-model="postDescription"
@@ -392,7 +357,7 @@
                     class="shadow
                         block
                         mt-2
-                        file_label
+                        postImage
                         cursor-pointer
                         appearance-none
                         border
@@ -404,7 +369,7 @@
                         leading-tight
                         focus:outline-none
                         focus:shadow-outline"
-                    for="model_image"
+                    for="postImage"
                     >
                     Select image
                     </label>
@@ -413,19 +378,20 @@
                         hidden
                     "
                     accept="image/*"
-                    id="model_image"
+                    id="postImage"
                     ref="myFiles"
                     type="file"
+                    data-file-target="postImage"
                     placeholder="Overview Image"
                     @change="previewFiles"
                     />
                 </div>
                 <div class="mt-5">
-                  <button type="button" class="bg-blue-500 hover:bg-blue-700 flex items-center text-white font-bold  mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add <font-awesome-icon icon="plus"  size="1x" class="text-white cursor-pointer ml-2"  /></button>
+                  <button type="button" class="bg-blue-500 hover:bg-blue-700 flex items-center text-white font-bold  mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="5" data-next="6" @click="AddCars">Add <font-awesome-icon icon="plus"  size="1x" class="text-white cursor-pointer ml-2"  /></button>
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="5" data-prev="4" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="5" data-next="6" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="5" data-next="6">submit</button>
                 </div>
            </div>
            <div class="step step6">
@@ -443,7 +409,7 @@
                     class="shadow
                         block
                         mt-2
-                        file_label
+                        galleryImage
                         cursor-pointer
                         appearance-none
                         border
@@ -455,7 +421,7 @@
                         leading-tight
                         focus:outline-none
                         focus:shadow-outline"
-                    for="model_image"
+                    for="galleryImage"
                     >
                     Select image
                     </label>
@@ -464,16 +430,17 @@
                         hidden
                     "
                     accept="image/*"
-                    id="model_image"
+                    id="galleryImage"
                     ref="myFiles"
                     type="file"
-                    placeholder="Overview Image"
+                    data-file-target="galleryImage"
+                    placeholder="Gallery Image"
                     @change="previewFiles"
                     />
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="6" data-prev="5" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="6" data-next="7" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="6" data-next="7" @click="AddCars">submit</button>
                 </div>
            </div>
            <div class="step step7">
@@ -485,14 +452,11 @@
                     class="block text-gray-700 text-sm font-bold mb-2"
                     for="name"
                     >
-                    Model Video
+                    Model video
                     </label>
-                    <label
-                    class="shadow
-                        block
-                        mt-2
-                        file_label
-                        cursor-pointer
+                    <input
+                    class="
+                        shadow
                         appearance-none
                         border
                         rounded
@@ -502,31 +466,21 @@
                         text-gray-700
                         leading-tight
                         focus:outline-none
-                        focus:shadow-outline"
-                    for="model_image"
-                    >
-                    Select video
-                    </label>
-                    <input
-                    class="
-                        hidden
+                        focus:shadow-outline
                     "
-                    accept="video/*"
-                    id="model_image"
-                    ref="myFiles"
-                    type="file"
-                    placeholder="Overview Image"
-                    @change="previewFiles"
+                    type="text"
+                    placeholder="Youtube Link"
+                    v-model="youtubeLink"
                     />
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="7" data-prev="6" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="7" data-next="8" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="7" data-next="8" @click="AddCars">submit</button>
                 </div>
            </div>
            <div class="step step8">
              <div class="msg_box h-12">
-                   <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-green-500" v-if="colorsuccess == true">Added Successfully</div>
               </div>
              <div class="mb-4">
                     <label
@@ -549,7 +503,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Color Code"
                     v-model="colorCode"
@@ -576,7 +529,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder=" Color Title"
                     v-model="colorTitle"
@@ -593,7 +545,7 @@
                     class="shadow
                         block
                         mt-2
-                        file_label
+                        colorImage
                         cursor-pointer
                         appearance-none
                         border
@@ -605,7 +557,7 @@
                         leading-tight
                         focus:outline-none
                         focus:shadow-outline"
-                    for="model_image"
+                    for="colorImage"
                     >
                     Select image
                     </label>
@@ -614,19 +566,20 @@
                         hidden
                     "
                     accept="image/*"
-                    id="model_image"
+                    id="colorImage"
                     ref="myFiles"
                     type="file"
-                    placeholder="Overview Image"
+                    data-file-target="colorImage"
+                    placeholder="Color Image"
                     @change="previewFiles"
                     />
                 </div>
                 <div class="mt-5">
-                  <button type="button" class="bg-blue-500 hover:bg-blue-700 flex items-center text-white font-bold  mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add <font-awesome-icon icon="plus"  size="1x" class="text-white cursor-pointer ml-2"  /></button>
+                  <button type="button" class="bg-blue-500 hover:bg-blue-700 flex items-center text-white font-bold  mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="8" data-next="9" @click="AddCars">Add <font-awesome-icon icon="plus"  size="1x" class="text-white cursor-pointer ml-2"  /></button>
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="8" data-prev="7" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="8" data-next="9" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="8" data-next="9" >submit</button>
                 </div>
            </div>
            <div class="step step9">
@@ -654,7 +607,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Specification Type"
                     v-model="specType"
@@ -681,7 +633,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Specification Model"
                     v-model="specModel"
@@ -708,7 +659,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Specification Petrol"
                     v-model="specPetrol"
@@ -735,7 +685,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Specification Diesel"
                     v-model="specDiesel"
@@ -743,7 +692,7 @@
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="9" data-prev="8" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="9" data-next="10" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="9" data-next="10" @click="AddCars">submit</button>
                 </div>
            </div>
            <div class="step step10">
@@ -771,7 +720,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Feature Title"
                     v-model="feutureTitle"
@@ -798,7 +746,6 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    id="model_name"
                     type="text"
                     placeholder="Feature Variant Title"
                     v-model="featureVariantTitle"
@@ -806,9 +753,166 @@
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="10" data-prev="9" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="10" data-next="11" @click="Nextstep">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="10" data-next="11" @click="AddCars">submit</button>
                 </div>
            </div>
+          <div class="step step11">
+             <div class="msg_box h-12">
+                   <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+              </div>
+             <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="name"
+                    >
+                    Feature Type
+                    </label>
+                    <input
+                    class="
+                        shadow
+                        appearance-none
+                        border
+                        rounded
+                        w-full
+                        py-2
+                        px-3
+                        text-gray-700
+                        leading-tight
+                        focus:outline-none
+                        focus:shadow-outline
+                    "
+                    type="text"
+                    placeholder="Feature Type"
+                    v-model="feutureType"
+                    />
+                </div>
+                <div class="mt-16 flex items-center justify-between">
+                    <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="10" data-prev="9" @click="prevstep">Previous</button> -->
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="11" data-next="12" @click="AddCars">submit</button>
+                </div>
+            </div>
+          <div class="step step12">
+             <div class="msg_box h-12">
+                   <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+              </div>
+             <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="name"
+                    >
+                    Variant Feature Type
+                    </label>
+                    <input
+                    class="
+                        shadow
+                        appearance-none
+                        border
+                        rounded
+                        w-full
+                        py-2
+                        px-3
+                        text-gray-700
+                        leading-tight
+                        focus:outline-none
+                        focus:shadow-outline
+                    "
+                    type="text"
+                    placeholder="Variant Feature Type"
+                    v-model="variantFeutureType"
+                    />
+                </div>
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="name"
+                    >
+                    Variant Feature Value
+                    </label>
+                    <input
+                    class="
+                        shadow
+                        appearance-none
+                        border
+                        rounded
+                        w-full
+                        py-2
+                        px-3
+                        text-gray-700
+                        leading-tight
+                        focus:outline-none
+                        focus:shadow-outline
+                    "
+                    type="text"
+                    placeholder="Variant Feature Value"
+                    v-model="variantFeutureValue"
+                    />
+                </div>
+                <div class="mt-16 flex items-center justify-between">
+                    <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="10" data-prev="9" @click="prevstep">Previous</button> -->
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="12" data-next="13" @click="AddCars">submit</button>
+                </div>
+            </div>
+            <div class="step step13">
+             <div class="msg_box h-12">
+                   <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+              </div>
+             <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="name"
+                    >
+                    Car Fuel Type
+                    </label>
+                    <input
+                    class="
+                        shadow
+                        appearance-none
+                        border
+                        rounded
+                        w-full
+                        py-2
+                        px-3
+                        text-gray-700
+                        leading-tight
+                        focus:outline-none
+                        focus:shadow-outline
+                    "
+                    type="text"
+                    placeholder="Car Fuel Type"
+                    v-model="carFuelType"
+                    />
+                </div>
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    for="name"
+                    >
+                    Car Price
+                    </label>
+                    <input
+                    class="
+                        shadow
+                        appearance-none
+                        border
+                        rounded
+                        w-full
+                        py-2
+                        px-3
+                        text-gray-700
+                        leading-tight
+                        focus:outline-none
+                        focus:shadow-outline
+                    "
+                    type="text"
+                    placeholder="Car Price"
+                    v-model="carPrice"
+                    />
+                </div>
+                <div class="mt-16 flex items-center justify-between">
+                    <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="10" data-prev="9" @click="prevstep">Previous</button> -->
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="13" @click="AddCars">submit</button>
+                </div>
+            </div>
         </div>
       </div>
   </section>
@@ -818,17 +922,30 @@
 export default {
   data () {
     return {
+      postTable: [],
       cars: [],
+      carId: '',
+      overviewId: '',
+      highlightId: '',
+      featureVariantId: '',
+      featureModelId: '',
       modelName: '',
-      files: '',
+      modelImage: '',
+      overviewImage: '',
+      postImage: '',
+      galleryImage: '',
+      colorImage: '',
       description: '',
       power: '',
       transmission: '',
       mileage: '',
+      postsuccess: false,
       success: false,
+      colorsuccess: false,
       highlight: '',
       postTitle: '',
       postDescription: '',
+      youtubeLink: '',
       colorCode: '',
       colorTitle: '',
       specType: '',
@@ -836,15 +953,18 @@ export default {
       specPetrol: '',
       specDiesel: '',
       feutureTitle: '',
-      featureVariantTitle: ''
+      featureVariantTitle: '',
+      feutureType: '',
+      variantFeutureType: '',
+      variantFeutureValue: '',
+      carFuelType: '',
+      carPrice: ''
+
     }
-  },
-  mounted () {
-    this.Getcars()
   },
   methods: {
     previewFiles (event) {
-      var label = document.querySelector('.file_label')
+      var label = document.querySelector('.' + event.target.getAttribute('data-file-target'))
       var fileLength = event.target.files.length
       if (fileLength === 0) {
         label.innerHTML = 'Select image'
@@ -853,14 +973,13 @@ export default {
         label.innerHTML = fileName
       }
       var files = event.target.files || event.dataTransfer.files
-      this.createImage(files[0])
+      this.createImage(files[0], event.target.getAttribute('data-file-target'))
     },
-    createImage (file) {
+    createImage (file, path) {
       var reader = new FileReader()
       var vm = this
       reader.onload = (e) => {
         vm.files = e.target.result
-        console.log(vm.files)
       }
       reader.readAsDataURL(file)
     },
@@ -881,63 +1000,252 @@ export default {
       document.querySelector('.step' + target).classList.add('active')
       e.target.classList.add('active')
     },
-    // Nextstep (e) {
-    //   var current = e.target.getAttribute('data-current')
-    //   var next = e.target.getAttribute('data-next')
-    //   var currentStep = document.querySelector('.step' + current)
-    //   var nextStep = document.querySelector('.step' + next)
-    //   var tabItem = document.querySelector('.tab_item' + next)
-    //   var alltabs = document.querySelectorAll('.tab_item')
-    //   alltabs.forEach(tab => {
-    //     if (tab.classList.contains('active')) {
-    //       var tabNum = tab.getAttribute('data-target')
-    //       document.querySelector('.tab_item' + tabNum).classList.remove('active')
-    //     }
-    //   })
-    //   tabItem.classList.add('active')
-    //   currentStep.classList.remove('active')
-    //   nextStep.classList.add('active')
-    // },
-    // prevstep (e) {
-    //   var current = e.target.getAttribute('data-current')
-    //   var prev = e.target.getAttribute('data-prev')
-    //   var currentStep = document.querySelector('.step' + current)
-    //   var prevStep = document.querySelector('.step' + prev)
-    //   var tabItem = document.querySelector('.tab_item' + prev)
-    //   var alltabs = document.querySelectorAll('.tab_item')
-    //   alltabs.forEach(tab => {
-    //     if (tab.classList.contains('active')) {
-    //       var tabNum = tab.getAttribute('data-target')
-    //       document.querySelector('.tab_item' + tabNum).classList.remove('active')
-    //     }
-    //   })
-    //   tabItem.classList.add('active')
-    //   currentStep.classList.remove('active')
-    //   prevStep.classList.add('active')
-    // },
-    AddCars () {
-      this.axios
-        .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/store', {
-          car_title: this.modelName,
-          car_image: 'hello'
-        })
-        .then((response) => {
-          console.log(response)
-          this.success = true
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    Getcars () {
-      this.axios
-        .get(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/index')
-        .then((response) => {
-          this.cars = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    AddCars (e) {
+      var target = e.target.getAttribute('data-current')
+      var next = e.target.getAttribute('data-next')
+      if (target === '1') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/car', {
+            car_title: this.modelName,
+            car_image: 'hello'
+          })
+          .then((response) => {
+            this.carId = response.data.id
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '2') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/car_overview', {
+            car_id: this.carId,
+            car_description: this.description,
+            overview_image: 'hello'
+          })
+          .then((response) => {
+            this.overviewId = response.data.id
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '3') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/overview_details', {
+            overview_id: this.overviewId,
+            car_power: this.power,
+            car_transmission: this.transmission,
+            car_mileage: this.mileage
+          })
+          .then((response) => {
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '4') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/highlight', {
+            car_id: this.carId,
+            highlight_title: this.highlight
+          })
+          .then((response) => {
+            this.highlightId = response.data.id
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '5') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/highlight_post', {
+            highlight_id: this.highlightId,
+            post_title: this.postTitle,
+            post_description: this.postDescription,
+            post_image: 'hello'
+          })
+          .then((response) => {
+            this.postsuccess = true
+            this.postTitle = ''
+            this.postDescription = ''
+            setTimeout(() => {
+              this.postsuccess = false
+            }, 3000)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '6') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/gallery', {
+            car_id: this.carId,
+            gallery_image: this.galleryImage
+          })
+          .then((response) => {
+            console.log(response)
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '7') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/videolink', {
+            car_id: this.carId,
+            youtube_link: this.youtubeLink,
+            local_file_link: 'wfwe'
+          })
+          .then((response) => {
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '8') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/carcolor', {
+            car_id: this.carId,
+            color_code: this.colorCode,
+            color_title: this.colorTitle,
+            color_image: 'hello'
+          })
+          .then((response) => {
+            this.colorsuccess = true
+            this.colorCode = ''
+            this.colorTitle = ''
+            setTimeout(() => {
+              this.colorsuccess = false
+            }, 3000)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '9') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/specs', {
+            car_id: this.carId,
+            spec_type: this.specType,
+            spec_model: this.specModel,
+            spec_petrol: this.specPetrol,
+            spec_diesel: this.specDiesel
+          })
+          .then((response) => {
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '10') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/variant', {
+            car_id: this.carId,
+            feature_title: this.feutureTitle,
+            feature_variant_title: this.featureVariantTitle
+          })
+          .then((response) => {
+            this.featureVariantId = response.data.id
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '11') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/feature_model', {
+            features_variant_id: this.featureVariantId,
+            feature_type: this.feutureType
+          })
+          .then((response) => {
+            this.featureModelId = response.data.id
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '12') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/variant_feature', {
+            features_model_id: this.featureModelId,
+            variant_feature_type: this.variantFeutureType,
+            variant_feature_value: this.variantFeutureValue
+          })
+          .then((response) => {
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
+      if (target === '13') {
+        this.axios
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/pricelist', {
+            car_id: this.carId,
+            features_variant_id: this.featureVariantId,
+            car_fuel_type: this.carFuelType,
+            car_price: this.carPrice
+          })
+          .then((response) => {
+            document.querySelector('.step' + target).classList.remove('active')
+            document.querySelector('.step' + next).classList.add('active')
+
+            document.querySelector('.tab_item' + target).classList.remove('active')
+            document.querySelector('.tab_item' + next).classList.add('active')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
     }
   }
 }
