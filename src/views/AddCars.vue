@@ -22,6 +22,7 @@
           <div class="step step1 active">
                  <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
                  </div>
                  <div class="mb-4">
                     <label
@@ -96,6 +97,7 @@
            <div class="step step2">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
             <div class="mb-4">
                     <label
@@ -171,6 +173,7 @@
             <div class="step step3">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -258,6 +261,7 @@
            <div class="step step4">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -293,6 +297,7 @@
            <div class="step step5">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="postsuccess == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -391,12 +396,13 @@
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="5" data-prev="4" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="5" data-next="6">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="5" data-next="6" @click="NextTab">submit</button>
                 </div>
            </div>
            <div class="step step6">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
                <div class="mb-4">
                     <label
@@ -446,6 +452,7 @@
            <div class="step step7">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
                <div class="mb-4">
                     <label
@@ -481,6 +488,7 @@
            <div class="step step8">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="colorsuccess == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -579,12 +587,13 @@
                 </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="8" data-prev="7" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="8" data-next="9" >submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="8" data-next="9" @click="NextTab" >submit</button>
                 </div>
            </div>
            <div class="step step9">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -698,6 +707,7 @@
            <div class="step step10">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -759,6 +769,7 @@
           <div class="step step11">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -794,6 +805,7 @@
           <div class="step step12">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -855,6 +867,7 @@
             <div class="step step13">
              <div class="msg_box h-12">
                    <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
              <div class="mb-4">
                     <label
@@ -942,6 +955,7 @@ export default {
       postsuccess: false,
       success: false,
       colorsuccess: false,
+      error: false,
       highlight: '',
       postTitle: '',
       postDescription: '',
@@ -983,26 +997,35 @@ export default {
       }
       reader.readAsDataURL(file)
     },
-    tabFunc (e) {
-      var alltabs = document.querySelectorAll('.tab_item')
-      alltabs.forEach(tab => {
-        if (tab.classList.contains('active')) {
-          tab.classList.remove('active')
-        }
-      })
-      var alltabItems = document.querySelectorAll('.step')
-      alltabItems.forEach(item => {
-        if (item.classList.contains('active')) {
-          item.classList.remove('active')
-        }
-      })
-      var target = e.target.getAttribute('data-target')
-      document.querySelector('.step' + target).classList.add('active')
-      e.target.classList.add('active')
+    // tabFunc (e) {
+    //   var alltabs = document.querySelectorAll('.tab_item')
+    //   alltabs.forEach(tab => {
+    //     if (tab.classList.contains('active')) {
+    //       tab.classList.remove('active')
+    //     }
+    //   })
+    //   var alltabItems = document.querySelectorAll('.step')
+    //   alltabItems.forEach(item => {
+    //     if (item.classList.contains('active')) {
+    //       item.classList.remove('active')
+    //     }
+    //   })
+    //   var target = e.target.getAttribute('data-target')
+    //   document.querySelector('.step' + target).classList.add('active')
+    //   e.target.classList.add('active')
+    // },
+    NextTab (e) {
+      var current = e.target.getAttribute('data-current')
+      var next = e.target.getAttribute('data-next')
+      document.querySelector('.step' + current).classList.remove('active')
+      document.querySelector('.step' + next).classList.add('active')
+      document.querySelector('.tab_item' + current).classList.remove('active')
+      document.querySelector('.tab_item' + next).classList.add('active')
     },
     AddCars (e) {
       var target = e.target.getAttribute('data-current')
       var next = e.target.getAttribute('data-next')
+      this.error = false
       if (target === '1') {
         this.axios
           .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/car', {
@@ -1017,6 +1040,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1036,6 +1060,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1055,6 +1080,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1073,6 +1099,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1093,6 +1120,7 @@ export default {
             }, 3000)
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1111,6 +1139,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1129,6 +1158,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1149,6 +1179,7 @@ export default {
             }, 3000)
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1169,6 +1200,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1188,6 +1220,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1206,6 +1239,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1224,6 +1258,7 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
@@ -1236,13 +1271,10 @@ export default {
             car_price: this.carPrice
           })
           .then((response) => {
-            document.querySelector('.step' + target).classList.remove('active')
-            document.querySelector('.step' + next).classList.add('active')
-
-            document.querySelector('.tab_item' + target).classList.remove('active')
-            document.querySelector('.tab_item' + next).classList.add('active')
+            location.reload()
           })
           .catch((error) => {
+            this.error = true
             console.log(error)
           })
       }
