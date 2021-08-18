@@ -3,19 +3,19 @@
       <div class="container flex justify-evenly mx-auto mt-24">
         <div class="w-1/4 ">
             <div class="tab_box px-3 py-6 ">
-              <h1 class="font-bold tab_item tab_item1 text-md my-2 flex items-center justify-between cursor-pointer active  px-2 py-1" data-target="1" @click="tabFunc">Car Details <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item2 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="2" @click="tabFunc">Overview <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item3 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="3" @click="tabFunc">Overview Details <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item4 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="4" @click="tabFunc">Highlight <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item5 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="5" @click="tabFunc">Highlight Post <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item6 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="6" @click="tabFunc">Gallery <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item7 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="7" @click="tabFunc">Videos <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item8 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="8" @click="tabFunc">Colors <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item9 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="9" @click="tabFunc">Specifications <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item10 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="10" @click="tabFunc">Features Variant <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item11 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="11" @click="tabFunc">Features Model <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item12 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="12" @click="tabFunc">Variant Features <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
-              <h1 class="font-bold tab_item tab_item13 text-md my-2 flex items-center justify-between cursor-pointer  px-2 py-1" data-target="13" @click="tabFunc">Price List <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item1 text-md my-2 flex items-center justify-between  active  px-2 py-1" data-target="1" @click="tabFunc">Car Details <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item2 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="2" @click="tabFunc">Overview <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item3 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="3" @click="tabFunc">Overview Details <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item4 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="4" @click="tabFunc">Highlight <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item5 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="5" @click="tabFunc">Highlight Post <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item6 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="6" @click="tabFunc">Gallery <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item7 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="7" @click="tabFunc">Videos <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item8 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="8" @click="tabFunc">Colors <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item9 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="9" @click="tabFunc">Specifications <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item10 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="10" @click="tabFunc">Features Variant <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item11 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="11" @click="tabFunc">Features Model <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item12 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="12" @click="tabFunc">Variant Features <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
+              <h1 class="font-bold tab_item tab_item13 text-md my-2 flex items-center justify-between   px-2 py-1" data-target="13" @click="tabFunc">Price List <font-awesome-icon icon="chevron-right"  size="1x" class="text-white  mt-1" /></h1>
             </div>
         </div>
         <div class="w-2/5 px-8 pb-10">
@@ -226,7 +226,7 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    type="text"
+                    type="number"
                     placeholder="Power"
                     v-model="power"
                     />
@@ -278,7 +278,7 @@
                         focus:outline-none
                         focus:shadow-outline
                     "
-                    type="text"
+                    type="number"
                     placeholder="Mileage"
                     v-model="mileage"
                     />
@@ -1056,23 +1056,23 @@ export default {
         reader.readAsDataURL(file)
       }
     },
-    tabFunc (e) {
-      var alltabs = document.querySelectorAll('.tab_item')
-      alltabs.forEach(tab => {
-        if (tab.classList.contains('active')) {
-          tab.classList.remove('active')
-        }
-      })
-      var alltabItems = document.querySelectorAll('.step')
-      alltabItems.forEach(item => {
-        if (item.classList.contains('active')) {
-          item.classList.remove('active')
-        }
-      })
-      var target = e.target.getAttribute('data-target')
-      document.querySelector('.step' + target).classList.add('active')
-      e.target.classList.add('active')
-    },
+    // tabFunc (e) {
+    //   var alltabs = document.querySelectorAll('.tab_item')
+    //   alltabs.forEach(tab => {
+    //     if (tab.classList.contains('active')) {
+    //       tab.classList.remove('active')
+    //     }
+    //   })
+    //   var alltabItems = document.querySelectorAll('.step')
+    //   alltabItems.forEach(item => {
+    //     if (item.classList.contains('active')) {
+    //       item.classList.remove('active')
+    //     }
+    //   })
+    //   var target = e.target.getAttribute('data-target')
+    //   document.querySelector('.step' + target).classList.add('active')
+    //   e.target.classList.add('active')
+    // },
     NextTab (e) {
       var current = e.target.getAttribute('data-current')
       var next = e.target.getAttribute('data-next')
