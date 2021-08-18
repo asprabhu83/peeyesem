@@ -1,16 +1,7 @@
 <template>
 <section>
 <div >
-  <div class="dialog_box fixed inset-0 h-screen w-full flex justify-center items-center" v-if="addCarDialog === true">
-      <div class="dialog_content bg-white rounded-md shadow-md">
-         <div class="my-2   flex items-center justify-between py-3 px-6"><span class="font-bold text-lg" >Add Cars</span><font-awesome-icon icon="times"  size="1x" class="text-red-600 cursor-pointer" @click="addCarDialog = false" /></div>
-         <AddCars @created="GetCarsList" @childDialog="childDialog"/>
-      </div>
-   </div>
-   <div class="w-8/12 mx-auto text-right mt-10">
-     <button @click="addCarDialog = true" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 ml-5 px-4 rounded focus:outline-none focus:shadow-outline">Add Cars<font-awesome-icon icon="user-plus"  size="1x" class="text-white ml-2 cursor-pointer"  /></button>
-   </div>
-  <div class="w-8/12 mx-auto mt-10">
+  <div class="w-8/12 mx-auto mt-24">
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -65,7 +56,7 @@
                       tracking-wider
                     "
                   >
-                    Description
+                    Model Type
                   </th>
                   <th
                     scope="col"
@@ -122,7 +113,7 @@
                         text-green-800
                       "
                     >
-                      {{car.car_description}}
+                      {{car.car_type}}
                     </span>
                   </td>
                   <td
@@ -138,7 +129,7 @@
                     "
                   >
                     <font-awesome-icon icon="edit"  size="1x" class="text-green-600 mr-4 cursor-pointer mt-1" @click="Edit" />
-                    <font-awesome-icon icon="trash"  size="1x" class="text-red-600 cursor-pointer mt-1" @click="DialogBox" />
+                    <font-awesome-icon icon="trash"  size="1x" class="text-red-600 cursor-pointer mt-1" @click="DialogBox(car.id)" />
                   </td>
                 </tr>
 
@@ -163,7 +154,7 @@
           </button>
           <button
             class="bg-red-700 mx-4 text-white rounded-sm py-1 px-6"
-            data-role-id="" v-on:click="Delete"
+            data-car-id="" v-on:click="Delete"
           >
             ok
           </button>
@@ -179,15 +170,10 @@
 </template>
 
 <script>
-import AddCars from '../views/AddCars.vue'
 export default {
-  components: {
-    AddCars
-  },
   data () {
     return {
       cars: [],
-      addCarDialog: false,
       deleteDialog: false
     }
   },
@@ -199,17 +185,27 @@ export default {
       this.axios
         .get(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/index')
         .then((response) => {
-          this.cars = response.data.car_table
+          this.cars = response.data.cars
         })
         .catch((error) => {
           console.log(error)
         })
     },
-    childDialog () {
-      this.addCarDialog = false
-    },
-    DialogBox () {
+    DialogBox (id) {
       this.deleteDialog = true
+      this.$el.setAttribute('data-car-id', id)
+    },
+    Delete () {
+      var id = this.$el.getAttribute('data-car-id')
+      this.axios
+        .delete(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/delete/' + id)
+        .then(() => {
+          this.deleteDialog = false
+          this.GetCarsList()
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }

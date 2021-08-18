@@ -6,6 +6,7 @@ import UsersList from '../views/UserList.vue'
 import UserRoleList from '../views/UserRoleList.vue'
 import Profile from '../views/Profile.vue'
 import AddCars from '../views/AddCars.vue'
+import Carslist from '../views/CarsList.vue'
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
         path: '/add-cars',
         name: 'AddCars',
         component: AddCars
+      },
+      {
+        path: '/cars-list',
+        name: 'Carslist',
+        component: Carslist
       },
       {
         path: '/user-role-list',

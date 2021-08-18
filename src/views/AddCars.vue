@@ -53,6 +53,36 @@
                 <div class="mb-4">
                     <label
                     class="block text-gray-700 text-sm font-bold mb-2"
+                    for="modeltype"
+                  >
+                    Model Type
+                  </label>
+                  <select
+                    class="
+                      shadow
+                      appearance-none
+                      border
+                      rounded
+                      w-full
+                      py-2
+                      px-3
+                      text-gray-700
+                      cursor-pointer
+                      leading-tight
+                      focus:outline-none
+                      focus:shadow-outline
+                    "
+                    id="modeltype"
+                    v-model="modelType"
+                  >
+                  <option class="text-xl " value="">Choose Model Type</option>
+                  <option class="text-xl" :value="model.id" v-for="model in models"
+                    :key="model.id" >{{model.car_type}}</option>
+                  </select>
+                </div>
+                <div class="mb-4">
+                    <label
+                    class="block text-gray-700 text-sm font-bold mb-2"
                     for="name"
                     >
                     Model image
@@ -937,6 +967,7 @@ export default {
     return {
       postTable: [],
       cars: [],
+      models: [],
       carId: '',
       overviewId: '',
       highlightId: '',
@@ -944,6 +975,7 @@ export default {
       featureModelId: '',
       modelName: '',
       modelImage: '',
+      modelType: '',
       overviewImage: '',
       postImage: '',
       galleryImage: '',
@@ -976,6 +1008,9 @@ export default {
 
     }
   },
+  mounted () {
+    this.GetModels()
+  },
   methods: {
     previewFiles (event) {
       var label = document.querySelector('.' + event.target.getAttribute('data-file-target'))
@@ -995,31 +1030,26 @@ export default {
       if (path === 'modelImage') {
         reader.onload = (e) => {
           vm.modelImage = e.target.result
-          console.log(this.modelImage)
         }
       }
       if (path === 'overviewImage') {
         reader.onload = (e) => {
           vm.overviewImage = e.target.result
-          console.log(this.overviewImage)
         }
       }
       if (path === 'postImage') {
         reader.onload = (e) => {
           vm.postImage = e.target.result
-          console.log(this.postImage)
         }
       }
       if (path === 'galleryImage') {
         reader.onload = (e) => {
           vm.galleryImage = e.target.result
-          console.log(this.galleryImage)
         }
       }
       if (path === 'colorImage') {
         reader.onload = (e) => {
           vm.colorImage = e.target.result
-          console.log(this.colorImage)
         }
       }
       if (flen !== 0) {
@@ -1051,17 +1081,31 @@ export default {
       document.querySelector('.tab_item' + current).classList.remove('active')
       document.querySelector('.tab_item' + next).classList.add('active')
     },
+    GetModels () {
+      this.axios
+        .get(process.env.VUE_APP_API_URI_PREFIX + 'api/car/types')
+        .then((response) => {
+          this.models = response.data.types
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     AddCars (e) {
       var target = e.target.getAttribute('data-current')
       var next = e.target.getAttribute('data-next')
+      var btn = e.target
+      btn.innerText = 'Loading'
       this.error = false
       if (target === '1') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/car', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/car', {
             car_title: this.modelName,
-            car_image: this.modelImage
+            car_image: this.modelImage,
+            car_type_id: this.modelType
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             this.carId = response.data.id
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
@@ -1069,18 +1113,20 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '2') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/car_overview', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/overview', {
             car_id: this.carId,
             car_description: this.description,
             overview_image: this.overviewImage
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             this.overviewId = response.data.id
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
@@ -1089,19 +1135,21 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '3') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/overview_details', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/overview_details', {
             overview_id: this.overviewId,
             car_power: this.power,
             car_transmission: this.transmission,
             car_mileage: this.mileage
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
 
@@ -1109,17 +1157,19 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '4') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/highlight', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/highlight', {
             car_id: this.carId,
             highlight_title: this.highlight
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             this.highlightId = response.data.id
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
@@ -1128,39 +1178,45 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '5') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/highlight_post', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/highlight_post', {
             highlight_id: this.highlightId,
             post_title: this.postTitle,
             post_description: this.postDescription,
             post_image: this.postImage
           })
           .then((response) => {
+            btn.innerText = 'Add'
             this.postsuccess = true
             this.postTitle = ''
             this.postDescription = ''
+            this.postImage = ''
+            var label = document.querySelector('.postImage')
+            label.innerHTML = 'Select image'
             setTimeout(() => {
               this.postsuccess = false
             }, 3000)
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '6') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/gallery', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/gallery', {
             car_id: this.carId,
             gallery_image: this.galleryImage
           })
           .then((response) => {
-            console.log(response)
+            btn.innerHTML = 'submit'
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
 
@@ -1168,18 +1224,19 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '7') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/videolink', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/videolink', {
             car_id: this.carId,
-            youtube_link: this.youtubeLink,
-            local_file_link: 'wfwe'
+            youtube_link: this.youtubeLink
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
 
@@ -1187,34 +1244,40 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '8') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/carcolor', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/carcolor', {
             car_id: this.carId,
             color_code: this.colorCode,
             color_title: this.colorTitle,
             color_image: this.colorImage
           })
           .then((response) => {
+            btn.innerText = 'Add'
             this.colorsuccess = true
             this.colorCode = ''
             this.colorTitle = ''
+            this.colorImage = ''
+            var label = document.querySelector('.colorImage')
+            label.innerHTML = 'Select image'
             setTimeout(() => {
               this.colorsuccess = false
             }, 3000)
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '9') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/specs', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/specs', {
             car_id: this.carId,
             spec_type: this.specType,
             spec_model: this.specModel,
@@ -1222,6 +1285,7 @@ export default {
             spec_diesel: this.specDiesel
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
 
@@ -1229,18 +1293,20 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '10') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/variant', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/variant', {
             car_id: this.carId,
             feature_title: this.feutureTitle,
             feature_variant_title: this.featureVariantTitle
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             this.featureVariantId = response.data.id
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
@@ -1249,17 +1315,19 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '11') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/feature_model', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/feature_model', {
             features_variant_id: this.featureVariantId,
             feature_type: this.feutureType
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             this.featureModelId = response.data.id
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
@@ -1268,18 +1336,20 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '12') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/variant_feature', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/variant_feature', {
             features_model_id: this.featureModelId,
             variant_feature_type: this.variantFeutureType,
             variant_feature_value: this.variantFeutureValue
           })
           .then((response) => {
+            btn.innerHTML = 'submit'
             document.querySelector('.step' + target).classList.remove('active')
             document.querySelector('.step' + next).classList.add('active')
 
@@ -1287,22 +1357,25 @@ export default {
             document.querySelector('.tab_item' + next).classList.add('active')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
       }
       if (target === '13') {
         this.axios
-          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/cars/post/pricelist', {
+          .post(process.env.VUE_APP_API_URI_PREFIX + 'api/store/pricelist', {
             car_id: this.carId,
             features_variant_id: this.featureVariantId,
             car_fuel_type: this.carFuelType,
             car_price: this.carPrice
           })
           .then((response) => {
-            location.reload()
+            btn.innerHTML = 'submit'
+            this.$router.push('/cars-list')
           })
           .catch((error) => {
+            btn.innerHTML = 'submit'
             this.error = true
             console.log(error)
           })
