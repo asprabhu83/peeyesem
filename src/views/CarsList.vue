@@ -128,7 +128,7 @@
                       font-medium
                     "
                   >
-                    <font-awesome-icon icon="edit"  size="1x" class="text-green-600 mr-4 cursor-pointer mt-1" @click="Edit" />
+                    <font-awesome-icon icon="edit"  size="1x" class="text-green-600 mr-4 cursor-pointer mt-1" @click="Edit(car.id)" />
                     <font-awesome-icon icon="trash"  size="1x" class="text-red-600 cursor-pointer mt-1" @click="DialogBox(car.id)" />
                   </td>
                 </tr>
@@ -194,6 +194,9 @@ export default {
     DialogBox (id) {
       this.deleteDialog = true
       this.$el.setAttribute('data-car-id', id)
+    },
+    Edit (id) {
+      this.$router.push('/edit-cars?car_id=' + id)
     },
     Delete () {
       var id = this.$el.getAttribute('data-car-id')
