@@ -431,7 +431,7 @@
            </div>
            <div class="step step6">
              <div class="msg_box h-12">
-                   <div class="error py-3 text-green-500" v-if="success == true">Added Successfully</div>
+                   <div class="error py-3 text-green-500" v-if="gallerysuccess == true">Added Successfully</div>
                    <div class="error py-3 text-red-500" v-if="error == true">Invalid Data</div>
               </div>
                <div class="mb-4">
@@ -474,9 +474,12 @@
                     @change="previewFiles"
                     />
                 </div>
+                <div class="mt-5">
+                  <button type="button" class="bg-blue-500 hover:bg-blue-700 flex items-center text-white font-bold  mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="6" data-next="7"  @click="AddCars">Add <font-awesome-icon icon="plus"  size="1x" class="text-white cursor-pointer ml-2"  /></button>
+                </div>
                 <div class="mt-16 flex items-center justify-between">
                     <!-- <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full mr-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="6" data-prev="5" @click="prevstep">Previous</button> -->
-                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="6" data-next="7" @click="AddCars">submit</button>
+                    <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full  py-2 px-4 rounded focus:outline-none focus:shadow-outline" data-current="6" data-next="7" @click="NextTab">submit</button>
                 </div>
            </div>
            <div class="step step7">
@@ -988,6 +991,7 @@ export default {
       success: false,
       colorsuccess: false,
       error: false,
+      gallerysuccess: false,
       highlight: '',
       postTitle: '',
       postDescription: '',
@@ -1201,7 +1205,7 @@ export default {
             label.innerHTML = 'Select image'
             setTimeout(() => {
               this.postsuccess = false
-            }, 3000)
+            }, 2000)
           })
           .catch((error) => {
             btn.innerHTML = 'submit'
@@ -1216,12 +1220,14 @@ export default {
             gallery_image: this.galleryImage
           })
           .then((response) => {
-            btn.innerHTML = 'submit'
-            document.querySelector('.step' + target).classList.remove('active')
-            document.querySelector('.step' + next).classList.add('active')
-
-            document.querySelector('.tab_item' + target).classList.remove('active')
-            document.querySelector('.tab_item' + next).classList.add('active')
+            this.gallerysuccess = true
+            btn.innerText = 'Add'
+            this.galleryImage = ''
+            var label = document.querySelector('.galleryImage')
+            label.innerHTML = 'Select image'
+            setTimeout(() => {
+              this.gallerysuccess = false
+            }, 2000)
           })
           .catch((error) => {
             btn.innerHTML = 'submit'
@@ -1267,7 +1273,7 @@ export default {
             label.innerHTML = 'Select image'
             setTimeout(() => {
               this.colorsuccess = false
-            }, 3000)
+            }, 2000)
           })
           .catch((error) => {
             btn.innerHTML = 'submit'
